@@ -16,8 +16,8 @@
       (run items args)
     (declare (ignore err-text))
     (when (eq err-code 0)
-      (assoc out-text items :test #'(lambda (chosed-text item-name)
-                                      (string= chosed-text (escape-item-name item-name)))))))
+      (assoc out-text items :test #'(lambda (chosen-text item-name)
+                                      (string= chosen-text (escape-item-name item-name)))))))
 
 (defun menu (items &optional (args ""))
   (when-let ((item-val (cdr (choose items args))))
