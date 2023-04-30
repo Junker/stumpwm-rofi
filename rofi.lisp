@@ -1,20 +1,23 @@
 (in-package :rofi)
 
+(defun escape-item-name (var)
+  (substitute #\MODIFIER_LETTER_DOUBLE_PRIME #\" var))
+
 (defun run (items &optional (args ""))
   (uiop:run-program (format nil "echo \"~A\" | rofi -dmenu ~A"
-                            (prepare-items items)
+                            (escape-item-name (prepare-items items))
                             args)
                     :ignore-error-status t
                     :error-output '(:string :stripped t)
                     :output '(:string :stripped t)))
-
 
 (defun choose (items args)
   (multiple-value-bind (out-text err-text err-code)
       (run items args)
     (declare (ignore err-text))
     (when (eq err-code 0)
-      (assoc out-text items :test #'string=))))
+      (assoc out-text items :test #'(lambda (chosed-text item-name)
+                                      (string= chosed-text (escape-item-name item-name)))))))
 
 (defun menu (items &optional (args ""))
   (when-let ((item-val (cdr (choose items args))))
