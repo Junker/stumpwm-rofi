@@ -40,6 +40,9 @@ git clone https://github.com/Junker/stumpwm-rofi rofi
 
 (define-key *top-map* (kbd "s-x") "my-menu")
 
+;; command list (colon)
+(define-key *top-map* (kbd "s-;") "rofi-colon")
+
 ;; windowlist
 (define-key *top-map* (kbd "s-Tab") "rofi-windowlist")
 
