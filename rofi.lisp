@@ -27,7 +27,9 @@
   (when-let ((item-val (cdr (choose items args))))
     (if (stringp item-val)
         (run-commands item-val)
-        (menu item-val args))))
+        (progn
+          (sleep 0.1)
+          (menu item-val args)))))
 
 (defun window-name (window)
   (format nil "~A (~A)"
