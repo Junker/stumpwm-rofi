@@ -23,7 +23,8 @@ git clone https://github.com/Junker/stumpwm-rofi rofi
 ```lisp
 ;; list of pairs '(("name" . "command"))
 (defvar *my-menu*
-  '(("Terminal" . "exec kitty")
+  '(("Something" . "any-stumpwm-command")
+    ("Terminal" . "exec kitty")
     ("Editor" . "exec featherpad")
     ("Krusader" . "exec krusader")
     ("💼  Work >" . (("Emacs" . "app-emacs")
